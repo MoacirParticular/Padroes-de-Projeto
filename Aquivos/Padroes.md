@@ -1,1 +1,0 @@
-# Padroes-de-Projeto
