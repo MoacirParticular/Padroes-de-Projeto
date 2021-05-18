@@ -36,6 +36,6 @@ A ideia aqui é ter um esqueleto básico para a arquitetura MVVM-C. Não iremos 
 Este é o cerne da questão, porque o coordenador controla o fluxo do aplicativo. 
 Se um UIViewController deseja abrir outro UIViewController, deve fazê-lo através do Coordinator.
 
->_Voce pode baixar [AQUI](https://github.com/MoacirParticular/Login-MVVM-C) o repositorio de exemplo e acompahar pelas classes implementadas nele._
+>_Voce pode [acompanhar AQUI, baixar](https://github.com/MoacirParticular/Login-MVVM-C) o repositorio de exemplo e acompahar pelas classes implementadas nele._
 
 
