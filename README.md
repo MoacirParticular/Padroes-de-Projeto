@@ -17,7 +17,7 @@ Existem vários padrões arquitetônicos disponíveis e você pode usar mais de 
 ## MVC
 
 Como um novo desenvolvedor iOS, há uma enorme quantidade de informações que você precisa dominar: uma nova linguagem, novos frameworks e APIs e o padrão arquitetônico recomendado pela Apple Model-View-Controller, ou MVC para abreviar.
-[MVC](https://github.com/MoacirParticular/Padroes-de-Projeto/tree/main/Padroes/MVC)
+MVC [Se quiser se aprofundar](https://github.com/MoacirParticular/Padroes-de-Projeto/tree/main/Padroes/MVC)
 
 
 
@@ -36,7 +36,7 @@ A ideia aqui é ter um esqueleto básico para a arquitetura MVVM-C. Não iremos 
 Este é o cerne da questão, porque o coordenador controla o fluxo do aplicativo. 
 Se um UIViewController deseja abrir outro UIViewController, deve fazê-lo através do Coordinator.
 
->_Voce pode baixar aqui neste repositorio o exemplo e acompahar pelas classes implementadas nele._
+>_Voce pode baixar [aqui](https://github.com/MoacirParticular/Login-MVVM-C) o repositorio de exemplo e acompahar pelas classes implementadas nele._
 
 ###### Vamos iniciar pelo Coordinator, implementando um Protocolo e a classe LoginCoordinator e HomeCoordinator.
 
