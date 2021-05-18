@@ -17,8 +17,97 @@ Existem vários padrões arquitetônicos disponíveis e você pode usar mais de 
 ## MVC
 
 Como um novo desenvolvedor iOS, há uma enorme quantidade de informações que você precisa dominar: uma nova linguagem, novos frameworks e APIs e o padrão arquitetônico recomendado pela Apple Model-View-Controller, ou MVC para abreviar.
-[MVC]()
+[MVC](https://github.com/MoacirParticular/Padroes-de-Projeto/tree/main/Padroes/MVC)
 
-Um dos padrões que eu acho mais utilizados hoje (maio/2021) é MVVM/MVVM-C, vou falar um pouco sobre, mostrar na pratica e deixar um projeto de exemplo.
 
-## MVVM
+
+## MVVM-C
+Atualmente este padrão é exigido como base do seu conhecimento.
+
+> O MVVM-C ajuda na separação de preocupações e permite que o teste e a implementação sejam... muito melhores do que o MVC. Agora, nada é perfeito, mas é perfeitamente possível ter uma variedade de dependências que podem levar a inicializadores grandes e pesados.
+
+>_Uma solução possível para isso é o uso do Padrão de Fábrica e o uso da Injeção de Dependência para testar as classes relevantes._
+
+A ideia aqui é ter um esqueleto básico para a arquitetura MVVM-C. Não iremos neste exemplo usar Factory, nem Independency Injection. 
+
+>MVVM-C quer dizer Model-View-View-Model with Coordinator
+
+#### Coordinator
+Este é o cerne da questão, porque o coordenador controla o fluxo do aplicativo. 
+Se um UIViewController deseja abrir outro UIViewController, deve fazê-lo através do Coordinator.
+
+>_Voce pode baixar aqui neste repositorio o exemplo e acompahar pelas classes implementadas nele._
+
+###### Vamos iniciar pelo Coordinator, implementando um Protocolo e a classe LoginCoordinator e HomeCoordinator.
+
+
+##### O protocolo do Coordinator
+
+```
+public protocol Coordinator {
+    func start()
+}
+```
+
+##### LoginCoordinator
+
+Vamos criar uma classe que vai abrir a tela de Login e quando estiver logado vai para o classe da Home.
+
+```
+public class LoginCoordinator: Coordinator {
+    let navigationController: UINavigationController
+   
+    init (navigationController: UINavigationController) {
+        self.navigationController = navigationController
+    }
+    
+    public func start() {
+        goViewController()
+    }
+    
+    private func goViewController() {
+        let viewController = LoginViewController()
+
+        viewController.onTryingToLogin = { user, pwd  in
+            
+            if user == "Moacir" && pwd == "Lindao" {
+                let coordinator = HomeCoordinator(navigationController: self.navigationController)
+                coordinator.start()
+            }
+        }
+
+        self.navigationController.pushViewController(viewController, animated: true)
+    }
+}
+
+```
+ classe  [LoginViewControler]()
+ classe [LoginView]()
+
+
+> Na classe HomeCoordinator vamos chamar uma ViewController do Sotryboard para dar mais charme.
+
+```
+public class HomeCoordinator: Coordinator {
+    let navigationController: UINavigationController
+   
+    init (navigationController: UINavigationController) {
+        self.navigationController = navigationController
+    }
+    
+    public func start() {
+        goViewController()
+    }
+    
+    private func goViewController() {
+        let storyBoard = getStoryBoard(nameStoryboard: "Main")        
+        
+        guard let viewController = storyBoard.instantiateViewController(identifier: "ViewController") as? ViewController else { return }
+
+        self.navigationController.pushViewController(viewController, animated: true)
+    }
+}
+```
+Veja que na view controller do HomeCoordinator nao tem nada implementado
+
+classe [ViewController]()
